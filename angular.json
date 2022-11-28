@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -99,6 +100,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "owlsec-coming-soon:build:production",
+            "firebaseProject": "owlsec-web",
+            "firebaseHostingSite": "owlsec-web"
           }
         }
       }

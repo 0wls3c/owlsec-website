@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "owlsec-web": {
+      "hosting": {
+        "owlsec-coming-soon": [
+          "owlsec-web"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "owlsec-web"
+  }
+}

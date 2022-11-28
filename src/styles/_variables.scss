@@ -1,0 +1,25 @@
+$dark-navy: #011A27;
+$blueberry: #063852;
+$tangerine: #F0810F;
+$daffodil: #E6DF44;
+
+$primary: rgb(51, 204, 255);
+$secondary: rgb(255, 204, 51);
+$accent: $dark-navy;
+
+$primary-active: rgb(45, 177, 220);
+$secondary-active: rgb(231, 184, 45);
+
+// Hamburger variables
+$hamburger-layer-color: $secondary !default;
+$hamburger-active-layer-color  : $secondary-active !default;
+
+/*
+Gold: #ffcc33 / rgb(255, 204, 51)
+LightBlue: #33ccff / rgb(51, 204, 255)
+NeonYellow: #ccff33 / rgb(204, 255, 51)
+NeonGreen: #66ff33 / rgb(102, 255, 51)
+#33ff66 / rgb(51, 255, 102)
+#33ffcc / rgb(51, 255, 204)
+#33ccff / rgb(51, 204, 255)
+*/

@@ -1,0 +1,25 @@
+@import '../assets/fonts/boxicons/css/boxicons.css';
+body {
+  font-family: "Roboto", sans-serif;
+  color: #444444;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary-active;
+}
+
+a:hover {
+  color: $secondary;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-primary {
+  font-family: "Raleway", sans-serif;
+}
