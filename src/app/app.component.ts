@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {AnimateHero} from './hero.animation';
-import {AnimateText} from './test.animation';
+import {AnimateText} from './test.animation'; // TODO: Add text animation
 // import gsap from 'gsap';
 @Component({
   selector: 'owl-root',
