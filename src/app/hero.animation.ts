@@ -37,7 +37,7 @@ export function AnimateHero() {
     x?: any;
     y?: any;
     r?: any;
-    maxLinks?: any = 10;
+    maxLinks?: any = 1;
     speed?: any = .5;
     a?: any = .5;
     aReduction?: any = .005;
@@ -112,7 +112,7 @@ export function AnimateHero() {
   }
 
 
-    let canvas: HTMLCanvasElement | any  = document.getElementById('canvas'),
+    let canvas: HTMLCanvasElement | any  = document.getElementById('heroCanvas'),
     ctx: any = canvas.getContext('2d'),
     WIDTH: any,
     HEIGHT: any,
@@ -121,13 +121,13 @@ export function AnimateHero() {
     mouseX: any,
     mouseY: any,
     stars: any = [],
-    initStarsPopulation: any = 200, // default 80
+    initStarsPopulation: any = 1000, // default 80
     dots: any = [],
-    dotsMinDist = 5, // default 2
+    dotsMinDist = 15, // default 2
     params = {
-      maxDistFromCursor: 50, // default 50
-      dotsSpeed: 5, //default 0
-      backgroundSpeed: 1 // default 0
+      maxDistFromCursor: 30, // default 50
+      dotsSpeed: 0, //default 0
+      backgroundSpeed: 0 // default 0
     };
 
   setCanvasSize();
@@ -148,7 +148,7 @@ export function AnimateHero() {
       stars[i] = new Star(i, Math.floor(Math.random()*WIDTH), Math.floor(Math.random()*HEIGHT));
       stars[i].draw();
     }
-    ctx.shadowBlur = .5;
+    ctx.shadowBlur = 0;
     animate();
   }
 
@@ -202,7 +202,7 @@ export function AnimateHero() {
     dots[dots.length-1].draw();
     dots[dots.length-1].link();
   }
-  setInterval(drawIfMouseMoving, 5);
+  setInterval(drawIfMouseMoving, 1);
 
   function degToRad(deg: any) {
     return deg * (Math.PI / 180);

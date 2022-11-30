@@ -1,19 +1,17 @@
 <!-- ======= Header ======= -->
-<header id="header">
+<header id="header" #header>
   <div class="container-fluid">
 
     <div class="logo">
-      <!-- <h1><a href="index.html">OWLsec</a></h1> -->
-      <!-- TODO: Add logo image -->
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href=""><img src="../assets/img/logo/OWLsec_LOGO_full_drop-shadow.png" alt="" class="img-fluid"></a>
+      <a href=""><img [src]="'assets/img/logo/' + (logoImg$ | async)" alt="" class="img-fluid"></a>
     </div>
-
     <button class="hamburger hamburger--spin nav-toggle" type="button">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
     </button>
+
     <nav class="nav-menu">
       <ul>
         <li class="active"><a href="#header" class="scrollto">Home</a></li>
@@ -45,33 +43,37 @@
 
 <!-- ======= Hero Section ======= -->
 <section id="hero">
-  <div class="landscape"></div>
-  <div class="landscape-cont"></div>
-  <div class="moonscape">
-    <div class="moon">
-      <div class="moon-phase"></div>
-    </div>
+  <div class="hero-canvas-container">
+    <div class="landscape"></div>
+    <div class="landscape-cont"></div>
+    <div class="moonscape d-none d-sm-block d-md-none d-lg-block">
+      <div class="moon">
+        <div class="moon-phase"></div>
+      </div>
 
-    <div class="poc1"></div>
-    <div class="poc2"></div>
-    <div class="poc3"></div>
-    <div class="poc4"></div>
-    <div class="poc5"></div>
-    <div class="poc6"></div>
+      <div class="poc1"></div>
+      <div class="poc2"></div>
+      <div class="poc3"></div>
+      <div class="poc4"></div>
+      <div class="poc5"></div>
+      <div class="poc6"></div>
+      <div class="poc7"></div>
+      <div class="poc8"></div>
+    </div>
+    <div class="filter"></div>
+    <canvas id="heroCanvas"></canvas>
   </div>
-  <div class="filter"></div>
-  <canvas id="canvas"></canvas>
   <div class="hero-container">
-    <h1>Your Journey Begins Here</h1>
+    <h1><b>YOUR JOURNEY BEGINS HERE</b></h1>
     <h2>Interested in CyberSec, InfoSec, OSINT, Programming, or Tech in general?<br>
       <b class="text-secondary">OWLsec</b> is made for <b class="text-decoration-underline">YOU</b>! Sign up for updates, and use the widget below to join our Discord!</h2>
 
-    <form action="forms/notify.php" method="post" role="form" class="php-email-form">
+    <form #subscriberForm="ngForm" role="form" class="php-email-form">
       <div class="row no-gutters">
-        <div class="col-md-6 form-group pr-md-1">
+        <div class="col-md-6 form-group pr-md-1 mb-1">
           <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
         </div>
-        <div class="col-md-6 form-group pl-md-1">
+        <div class="col-md-6 form-group pl-md-1 mb-1">
           <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
         </div>
       </div>
@@ -96,14 +98,13 @@
           <iframe src="https://discord.com/widget?id=990435451334688768&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0">
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+          <h3>Members of OWLsec benefit from more than just a place to learn.</h3>
           <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            What are those benefits?
           </p>
           <ul>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+            <li><i class="bx bx-check-double"></i> 100% Free access to countless years of combined experience within OWLsec.</li>
+            <li><i class="bx bx-check-double"></i> With the recent rate of growth OWLsec has seen, you're sure to find .</li>
             <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
           </ul>
           <p>
@@ -124,7 +125,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="card">
-            <img src="assets/img/why-us-1.jpg" class="card-img-top" alt="...">
+            <img src="assets/img/why-us-1.jpg" class="card-img-top img-fluid" alt="...">
             <div class="card-icon">
               <i class="bx bx-book-reader"></i>
             </div>
@@ -136,7 +137,7 @@
         </div>
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="card">
-            <img src="assets/img/why-us-2.jpg" class="card-img-top" alt="...">
+            <img src="assets/img/why-us-2.jpg" class="card-img-top img-fluid" alt="...">
             <div class="card-icon">
               <i class="bx bx-calendar-edit"></i>
             </div>
@@ -148,7 +149,7 @@
         </div>
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="card">
-            <img src="assets/img/why-us-3.jpg" class="card-img-top" alt="...">
+            <img src="assets/img/why-us-3.jpg" class="card-img-top img-fluid" alt="...">
             <div class="card-icon">
               <i class="bx bx-landscape"></i>
             </div>

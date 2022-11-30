@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -17,6 +17,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Firestore} from '@angular/fire/firestore';
+import { NgForm } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import {AnimateHero} from './hero.animation';
 import {AnimateText} from './test.animation'; // TODO: Add text animation
 // import gsap from 'gsap';
@@ -9,10 +11,46 @@ import {AnimateText} from './test.animation'; // TODO: Add text animation
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  showNavMenu: boolean = false;
+  logoImg$: BehaviorSubject<any>;
 
-  constructor() {}
+  constructor(/* private afs: AngularFirestore */) {
+    this.logoImg$ = new BehaviorSubject('logo_full_shadow.png');
+  }
+
+  // async addNewSubscriber(name: string, email: string, form: NgForm) {
+  //   const data = {
+  //     name,
+  //     email,
+  //     timestamp: new Date()
+  //   };
+  //   const response = await this.afs.collection('subscribers').add(data);
+  //   if (response) {
+  //     alert('Successfully subscribed!')
+  //   }
+  //   form.reset();
+  // }
+
+  // async addNewContact(data: any, form: NgForm) {
+  //   data.timestamp = new Date();
+  //   const response = await this.afs.collection('contacts').add(data);
+  //   if (response) {
+  //     alert('Successfully sent message!')
+  //   }
+  //   form.reset();
+  // }
+
+  toggleNav() {
+    this.showNavMenu = !this.showNavMenu;
+  }
+
+  getResponsiveLogo() {
+    const windowWidth = window.outerWidth;
+    return windowWidth > 767 ? this.logoImg$.next('logo_full_shadow.png') : this.logoImg$.next('logo_@2500.png');
+  }
 
   ngOnInit() {
+    this.getResponsiveLogo();
     AnimateHero();
     /**
    * Easy selector helper function
