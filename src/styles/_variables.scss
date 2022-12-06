@@ -10,6 +10,8 @@ $accent: $dark-navy;
 $primary-active: rgb(45, 177, 220);
 $secondary-active: rgb(231, 184, 45);
 
+$accordion-button-active-color: shade-color($secondary, 10%) !important;
+
 // Hamburger variables
 $hamburger-layer-color: $secondary !default;
 $hamburger-active-layer-color  : $secondary-active !default;

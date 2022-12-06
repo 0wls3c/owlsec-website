@@ -49,14 +49,6 @@ export function AnimateHero() {
       this.x = x;
       this.y = y;
       this.r = Math.floor(Math.random()*5)+1;
-    // this.maxLinks = 4; // default is 2
-    // this.speed = .5;
-    // this.a = .5;
-    // this.aReduction = .005;
-    // this.color = "rgba(255,255,255,"+this.a+")";
-    // this.linkColor = "rgba(255,255,255,"+this.a/4+")";
-
-    // this.dir = Math.floor(Math.random()*140)+200;
     }
 
     draw() {
@@ -121,11 +113,11 @@ export function AnimateHero() {
     mouseX: any,
     mouseY: any,
     stars: any = [],
-    initStarsPopulation: any = 1000, // default 80
+    initStarsPopulation: any = 80, // default 80
     dots: any = [],
-    dotsMinDist = 15, // default 2
+    dotsMinDist = 20, // default 2
     params = {
-      maxDistFromCursor: 30, // default 50
+      maxDistFromCursor: 50, // default 50
       dotsSpeed: 0, //default 0
       backgroundSpeed: 0 // default 0
     };
@@ -202,7 +194,7 @@ export function AnimateHero() {
     dots[dots.length-1].draw();
     dots[dots.length-1].link();
   }
-  setInterval(drawIfMouseMoving, 1);
+  // setInterval(drawIfMouseMoving, 17);
 
   function degToRad(deg: any) {
     return deg * (Math.PI / 180);

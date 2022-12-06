@@ -14,9 +14,9 @@
 
     <nav class="nav-menu">
       <ul>
-        <li class="active"><a href="#header" class="scrollto">Home</a></li>
-        <li><a href="#about" class="scrollto">About Us</a></li>
-        <li><a href="#why-us" class="scrollto">Why Us</a></li>
+        <li class="" (click)="toggleNav()"><a href="#header" class="scrollto">Home</a></li>
+        <li (click)="toggleNav()"><a href="#about" class="scrollto">About Us</a></li>
+        <li (click)="toggleNav()"><a href="#why-us" class="scrollto">Why Us</a></li>
         <!-- <li class="drop-down"><a href="">Drop Down</a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
@@ -34,7 +34,7 @@
             <li><a href="#">Drop Down 5</a></li>
           </ul>
         </li> -->
-        <li><a href="#contact" class="scrollto">Contact Us</a></li>
+        <li (click)="toggleNav()"><a href="#contact" class="scrollto">Contact Us</a></li>
       </ul>
     </nav><!-- .nav-menu -->
 
@@ -46,7 +46,7 @@
   <div class="hero-canvas-container">
     <div class="landscape"></div>
     <div class="landscape-cont"></div>
-    <div class="moonscape d-none d-sm-block d-md-none d-lg-block">
+    <div class="moonscape">
       <div class="moon">
         <div class="moon-phase"></div>
       </div>
@@ -64,25 +64,33 @@
     <canvas id="heroCanvas"></canvas>
   </div>
   <div class="hero-container">
-    <h1><b>YOUR JOURNEY BEGINS HERE</b></h1>
-    <h2>Interested in CyberSec, InfoSec, OSINT, Programming, or Tech in general?<br>
+    <h1 data-aos="fade-up"><b>YOUR JOURNEY BEGINS HERE</b></h1>
+    <h2 data-aos="fade-left">Interested in CyberSec, InfoSec, OSINT, Programming, or Tech in general?<br>
       <b class="text-secondary">OWLsec</b> is made for <b class="text-decoration-underline">YOU</b>! Sign up for updates, and use the widget below to join our Discord!</h2>
 
-    <form #subscriberForm="ngForm" role="form" class="php-email-form">
-      <div class="row no-gutters">
+    <form #subscriberForm="ngForm" role="form" class="email-form">
+      <div class="row no-gutters" data-aos="fade-up">
         <div class="col-md-6 form-group pr-md-1 mb-1">
-          <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+          <input [(ngModel)]="subscriberData.name" #name="ngModel" type="text" name="name" class="form-control" id="name" minlength="3" maxlength="30" placeholder="Your Name" required>
+          <p class="form-text text-danger text-start ms-3" *ngIf="name.dirty && name?.invalid">
+            Please enter a valid name
+          </p>
         </div>
         <div class="col-md-6 form-group pl-md-1 mb-1">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+          <input [(ngModel)]="subscriberData.email" #email="ngModel" email type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+          <p class="form-text text-danger text-start ms-3" *ngIf="email.dirty && email?.invalid">
+            Please enter a valid email
+          </p>
         </div>
       </div>
+
       <div class="my-3">
         <div class="loading">Loading</div>
         <div class="error-message"></div>
         <div class="sent-message">Your notification request was sent. Thank you!</div>
       </div>
-      <div class="text-center"><button type="submit">Notify me!</button></div>
+
+      <div class="text-center"><button type="button" [disabled]="subscriberForm.invalid" (click)="addNewSubscriber(subscriberData, subscriberForm)">Notify me!</button></div>
     </form>
 
   </div>
@@ -94,23 +102,22 @@
   <section id="about" class="about">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
-          <iframe src="https://discord.com/widget?id=990435451334688768&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        <div class="col-lg-6" data-aos="fade-up">
+          <iframe class="w-100" src="https://discord.com/widget?id=990435451334688768&theme=dark" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </div>
-        <div class="col-lg-6 pt-4 pt-lg-0">
+        <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="150">
           <h3>Members of OWLsec benefit from more than just a place to learn.</h3>
           <p class="fst-italic">
             What are those benefits?
           </p>
           <ul>
-            <li><i class="bx bx-check-double"></i> 100% Free access to countless years of combined experience within OWLsec.</li>
-            <li><i class="bx bx-check-double"></i> With the recent rate of growth OWLsec has seen, you're sure to find .</li>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            <li><i class="bx bx-check-double"></i> 100% Free access to the decades of experience within OWLsec.</li>
+            <li><i class="bx bx-check-double"></i> OWLsec includes reputable authors, hacktivists, inflencers and professionals.</li>
+            <li><i class="bx bx-check-double"></i> Our members have access to exclusive opportunities such as jobs and training.</li>
           </ul>
           <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
+            Unlike the countless number of online "communities", OWLsec invests in our members. We will guide you throughout your learning journey,
+            encouraging growth, and pushing you to challenge yourself. Our goal simple: <b class="text-secondary"><em>Provide "Open Source" Knowledge To All.</em></b>
           </p>
         </div>
       </div>
@@ -123,39 +130,39 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
           <div class="card">
-            <img src="assets/img/why-us-1.jpg" class="card-img-top img-fluid" alt="...">
+            <img src="assets/img/open-source.jpg" class="card-img-top img-fluid" alt="...">
             <div class="card-icon">
               <i class="bx bx-book-reader"></i>
             </div>
-            <div class="card-body">
+            <div class="card-body px-3">
               <h5 class="card-title"><a href="">Our Mission</a></h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+              <p class="card-text"><b class="text-secondary">OWLsec</b> is determined to raise the bar for all online communities. A community should be a welcoming, positive, and supportive environment, where members are encouaged, rather than discouraged. <b class="text-secondary">OWLsec</b> offers all of these essential aspects, generating individual member retention and growth. </p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="150">
           <div class="card">
-            <img src="assets/img/why-us-2.jpg" class="card-img-top img-fluid" alt="...">
+            <img src="assets/img/path-to-success.jpg" class="card-img-top img-fluid" alt="...">
             <div class="card-icon">
               <i class="bx bx-calendar-edit"></i>
             </div>
-            <div class="card-body">
+            <div class="card-body px-3">
               <h5 class="card-title"><a href="">Our Plan</a></h5>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+              <p class="card-text">Our foundation consists of members who are experienced Pentesters, Programmers, and Cyber professionals. They are the leaders, mentors, and core contributors who breath life into the <b class="text-secondary">OWLsec</b> community. Acquiring more members like them is how <b class="text-secondary">OWLsec</b> will grow.</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
           <div class="card">
-            <img src="assets/img/why-us-3.jpg" class="card-img-top img-fluid" alt="...">
+            <img src="assets/img/our-vision.jpg" class="card-img-top img-fluid" alt="...">
             <div class="card-icon">
               <i class="bx bx-landscape"></i>
             </div>
-            <div class="card-body">
+            <div class="card-body px-3">
               <h5 class="card-title"><a href="">Our Vision</a></h5>
-              <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet. </p>
+              <p class="card-text">As one of the fastest growing online communities, we understand how important it is to remain true to our values. <b class="text-secondary">OWLsec</b> was made to offer one very simple service: Provide a healthy environment for like-minded individuals to learn and grow together. We will set a new standard for online learning and comaraderie. </p>
             </div>
           </div>
         </div>
@@ -168,67 +175,19 @@
   <section class="faq">
     <div class="container">
 
-      <div class="section-title">
+      <div class="section-title" data-aos="fade-up">
         <h2>Frequenty Asked Questions</h2>
       </div>
 
-      <ul class="faq-list">
-
-        <li>
-          <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-          <div id="faq1" class="collapse" data-bs-parent=".faq-list">
-            <p>
-              Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-            </p>
-          </div>
-        </li>
-
-        <li>
-          <a data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-          <div id="faq2" class="collapse" data-bs-parent=".faq-list">
-            <p>
-              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-            </p>
-          </div>
-        </li>
-
-        <li>
-          <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-          <div id="faq3" class="collapse" data-bs-parent=".faq-list">
-            <p>
-              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-            </p>
-          </div>
-        </li>
-
-        <li>
-          <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-          <div id="faq4" class="collapse" data-bs-parent=".faq-list">
-            <p>
-              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-            </p>
-          </div>
-        </li>
-
-        <li>
-          <a data-bs-toggle="collapse" data-bs-target="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-          <div id="faq5" class="collapse" data-bs-parent=".faq-list">
-            <p>
-              Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-            </p>
-          </div>
-        </li>
-
-        <li>
-          <a data-bs-toggle="collapse" data-bs-target="#faq6" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-          <div id="faq6" class="collapse" data-bs-parent=".faq-list">
-            <p>
-              Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
-            </p>
-          </div>
-        </li>
-
-      </ul>
+      <div class="faq-list" data-aos="fade-up">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="static0">
+          <ngb-panel *ngFor="let item of faqDb; let i = index;" [type]="'secondary'" [title]="item.question" [id]="'static'+i">
+            <ng-template ngbPanelContent>
+              <div [innerHTML]="item.answer | safeHtml"></div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
 
     </div>
   </section><!-- End Frequenty Asked Questions Section -->
@@ -237,7 +196,7 @@
   <section id="contact" class="contact section-bg">
     <div class="container">
 
-      <div class="section-title">
+      <div class="section-title" data-aos="fade-up">
         <h2>Contact Us</h2>
       </div>
 
@@ -245,51 +204,51 @@
 
         <div class="col-lg-3 col-md-5 mb-5 mb-md-0">
           <div class="info">
-            <div class="address">
-              <i class="bx bx-map"></i>
-              <p>A108 Adam Street<br>New York, NY 535022</p>
+            <div class="address" data-aos="fade-right" data-aos-delay="">
+              <i class="bx bxl-discord"></i>
+              <p><a style="text-decoration: none;" class="text-dark" href="https://skid.owlsec.co">OWLsec Discord</a></p>
             </div>
 
-            <div class="email">
+            <div class="email" data-aos="fade-right" data-aos-delay="150">
               <i class="bx bx-envelope"></i>
-              <p>info@example.com</p>
+              <p><a style="text-decoration: none;" class="text-dark" href="mailto:hello@owlsec.io">hello@owlsec.io</a></p>
             </div>
 
-            <div class="phone">
-              <i class="bx bx-phone-call"></i>
-              <p>+1 5589 55488 55s</p>
+            <div class="phone" data-aos="fade-right" data-aos-delay="300">
+              <i class="bx bxs-t-shirt"></i>
+              <p><a style="text-decoration: none;" class="text-dark" href="https://owlsec.io/merch">owlsec.io/merch</a></p>
             </div>
           </div>
 
           <div class="social-links">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="twitter" data-aos="fade-up" data-aos-delay=""><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook" data-aos="fade-up" data-aos-delay="100"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram" data-aos="fade-up" data-aos-delay="200"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="linkedin" data-aos="fade-up" data-aos-delay="300"><i class="bx bxl-linkedin"></i></a>
           </div>
 
         </div>
 
         <div class="col-lg-5 col-md-6">
-          <form role="form" class="form email-form">
-            <div class="form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+          <form #contactForm="ngForm" role="form" class="form email-form">
+            <div class="form-group" data-aos="fade-up" data-aos-delay="">
+              <input [(ngModel)]="contactData.name" #name="ngModel" type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
             </div>
-            <div class="form-group mt-3">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            <div class="form-group mt-3" data-aos="fade-up" data-aos-delay="100">
+              <input [(ngModel)]="contactData.email" #email="ngModel" type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
             </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            <div class="form-group mt-3" data-aos="fade-up" data-aos-delay="200">
+              <input [(ngModel)]="contactData.subject" #subject="ngModel" type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
             </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            <div class="form-group mt-3" data-aos="fade-up" data-aos-delay="300">
+              <textarea [(ngModel)]="contactData.msg" #msg="ngModel" class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
             </div>
-            <!-- <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div> -->
-            <div class="text-center"><button class="btn btn-secondary" type="submit">Send Message</button></div>
+            <div class="mt-3">
+              <div class="sent-message" *ngIf="contactMsg.success">
+                <p>{{contactMsg.msg}}</p>
+              </div>
+            </div>
+            <div class="text-center mt-3" data-aos="fade-up" data-aos-delay="400"><button class="btn btn-secondary" type="button" (click)="addNewContact(contactData, contactForm)" [disabled]="contactForm.invalid">Send Message</button></div>
           </form>
         </div>
 
@@ -298,6 +257,12 @@
     </div>
   </section><!-- End Contact Us Section -->
 
+<div id="hardenize-container" data-aos="fade-right" data-aos-offset="700" style="z-index: 2; position: fixed; bottom: 30px; left: 16px;">
+  <a href="https://www.hardenize.com/report/owlsec.io?summary" target="_blank"
+   referrerpolicy="origin" rel="noopener"><img referrerpolicy="origin" border="0"
+   src="https://badge.hardenize.com/v2/images/hardenize-badge-owlsec.io.png"
+   width="70" height="110" hspace="0" vspace="0" alt="Hardenize Badge"></a>
+</div>
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
@@ -307,7 +272,7 @@
       &copy; Copyright 2022 <strong><span>OWLsec</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://owlsec.co">OWLsec</a>
+      Designed by <a href="https://owlsec.io">OWLsec</a>
     </div>
   </div>
 </footer><!-- End #footer -->
