@@ -125,9 +125,9 @@ export class AppComponent implements OnInit {
    * Scrool links with a class name .scrollto
    */
   // on('click', '.scrollto', function(e: Event) {
-  //   if (this) {
+  //   if (e.target.hash) {
   //     select('.nav-menu .active').classList.remove('active')
-  //     select('.scrollTo').parentElement.classList.toggle('active')
+  //     select('.scrollTo:focus').parentElement.classList.toggle('active')
   //     toogleNav();
   //   }
   // }, true)
