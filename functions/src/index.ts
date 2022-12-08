@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 
+// TODO: Add Firebase Functions
 // // Start writing functions
 // // https://firebase.google.com/docs/functions/typescript
 //
